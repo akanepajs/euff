@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welfare Valuation of an EU Farrowing Crate Ban</title>
+<style>
+  :root {
+    --teal: #88a8a8;
+    --olive: #889880;
+    --pink: #c890a0;
+    --ochre: #e0c868;
+    --mint: #c8e8e0;
+    --sage: #c0d0a9;
+    --burgundy: #744c5b;
+    --text: #36453e;
+    --muted: #6a7a72;
+    --grid: #dddddd;
+    --bg: #fafaf8;
+    --card: #ffffff;
+    --crate-color: #c890a0;
+    --free-color: #88a8a8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+    padding: 2rem 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  .draft-banner {
+    background: var(--ochre);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2.2rem 0 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--teal);
+  }
+  h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 1.4rem 0 0.5rem;
+  }
+  p, li {
+    font-size: 0.92rem;
+    margin-bottom: 0.6rem;
+  }
+  ul { padding-left: 1.3rem; margin-bottom: 1rem; }
+
+  /* Key message box */
+  .key-message {
+    background: var(--mint);
+    border-left: 4px solid var(--teal);
+    padding: 1rem 1.2rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .key-message strong {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--grid);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  /* Domain grades chart */
+  .domain-chart {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0.6rem 1rem;
+    align-items: center;
+    margin: 1rem 0;
+  }
+  .domain-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: right;
+  }
+  .bar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .bar-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bar-track {
+    flex: 1;
+    height: 18px;
+    background: #f0f0ee;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .bar-fill.crate { background: var(--crate-color); }
+  .bar-fill.free { background: var(--free-color); }
+  .bar-value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: 24px;
+    text-align: center;
+  }
+  .bar-value.crate { color: var(--crate-color); }
+  .bar-value.free { color: var(--free-color); }
+  .bar-legend {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0.8rem 0 0.3rem;
+    font-size: 0.82rem;
+  }
+  .bar-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+  }
+  .grade-scale-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  /* Domain detail panels */
+  .domain-detail {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1rem 1.4rem;
+    align-items: start;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--grid);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background: var(--card);
+  }
+  .domain-detail-title {
+    grid-column: 1 / -1;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .domain-figure {
+    width: 220px;
+    height: 200px;
+  }
+  .domain-figure svg {
+    width: 100%;
+    height: 100%;
+  }
+  .domain-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .domain-description .marker-crate {
+    color: var(--crate-color);
+    font-weight: 600;
+  }
+  .domain-description .marker-free {
+    color: var(--free-color);
+    font-weight: 600;
+  }
+  @media (max-width: 600px) {
+    .domain-detail {
+      grid-template-columns: 1fr;
+    }
+    .domain-figure {
+      width: 100%;
+      max-width: 220px;
+    }
+  }
+
+  /* Grade definitions table */
+  .grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .grade-table th {
+    background: var(--teal);
+    color: #fff;
+    padding: 0.35rem 0.6rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .grade-table td {
+    padding: 0.3rem 0.6rem;
+    border-bottom: 1px solid var(--grid);
+  }
+  .grade-table td:first-child {
+    font-weight: 700;
+    text-align: center;
+    width: 50px;
+  }
+  .grade-table tr:last-child td { border-bottom: none; }
+
+  /* AQALY scores */
+  .aqaly-scores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .aqaly-box {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--grid);
+  }
+  .aqaly-box.crate { border-color: var(--crate-color); background: rgba(200,144,160,0.06); }
+  .aqaly-box.free { border-color: var(--free-color); background: rgba(136,168,168,0.06); }
+  .aqaly-box.delta { border-color: var(--olive); background: rgba(136,152,128,0.06); }
+  .aqaly-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+    color: var(--muted);
+  }
+  .aqaly-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  .aqaly-unit {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  /* Moral weight toggle */
+  .toggle-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.2rem 0;
+    gap: 0;
+  }
+  .toggle-btn {
+    padding: 0.5rem 1.2rem;
+    border: 2px solid var(--teal);
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .toggle-btn:first-child { border-radius: 4px 0 0 4px; }
+  .toggle-btn:last-child { border-radius: 0 4px 4px 0; }
+  .toggle-btn:not(:first-child) { border-left: none; }
+  .toggle-btn.active {
+    background: var(--teal);
+    color: #fff;
+  }
+  .toggle-btn:hover:not(.active) {
+    background: rgba(136,168,168,0.1);
+  }
+
+  /* Monetisation values */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .value-card {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 6px;
+    background: var(--card);
+    border: 1px solid var(--grid);
+  }
+  .value-card-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .value-card-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .value-card-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* BCR highlight */
+  .bcr-highlight {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(136,168,168,0.08), rgba(136,152,128,0.08));
+    border: 2px solid var(--teal);
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+  .bcr-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .bcr-value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .bcr-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* Cost-benefit ratio cards */
+  .ratio-cards { display: flex; flex-direction: column; gap: 0.8rem; margin: 1rem 0; }
+  .ratio-card {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 0.6rem 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--grid);
+    border-radius: 6px;
+    padding: 0.8rem 1.2rem;
+  }
+  .ratio-card-method { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+  .ratio-card-method span { display: block; font-size: 0.72rem; font-weight: 400; color: var(--muted); margin-top: 0.15rem; }
+  .ratio-card-values { text-align: right; font-size: 0.82rem; }
+  .ratio-card-values .cost-val { color: var(--crate-color); }
+  .ratio-card-values .benefit-val { color: var(--teal); font-weight: 700; }
+  .ratio-card-bcr {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--teal);
+    text-align: center;
+    min-width: 4.5rem;
+    padding-left: 0.8rem;
+    border-left: 2px solid var(--grid);
+  }
+  .ratio-card-bcr span { display: block; font-size: 0.65rem; font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .ratio-cards-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 0.6rem 1.2rem;
+    padding: 0 1.2rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .grade-question {
+    background: rgba(224, 200, 104, 0.15);
+    border-left: 4px solid var(--ochre);
+    padding: 1rem 1.2rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .bar-legend { display: flex; justify-content: center; gap: 1.5rem; font-size: 0.82rem; color: var(--text); }
+  .bar-legend-item { display: flex; align-items: center; gap: 0.4rem; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+
+  /* Collapsible */
+  .collapsible-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.6rem 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text);
+    user-select: none;
+  }
+  .collapsible-header:hover { color: var(--teal); }
+  .collapsible-arrow {
+    transition: transform 0.2s;
+    font-size: 0.7rem;
+  }
+  .collapsible-arrow.open { transform: rotate(90deg); }
+  .collapsible-content {
+    display: none;
+    padding: 0.5rem 0 1rem 1.2rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .collapsible-content.open { display: block; }
+
+  /* Table styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.8rem 0 1.2rem;
+    font-size: 0.85rem;
+  }
+  th, td {
+    padding: 0.45rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid var(--grid);
+  }
+  th {
+    background: var(--teal);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.82rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.5rem; }
+    h1 { font-size: 1.3rem; }
+    .domain-chart { grid-template-columns: 90px 1fr; }
+    .aqaly-scores { grid-template-columns: 1fr; }
+    .value-grid { grid-template-columns: 1fr; }
+    .bcr-value { font-size: 1.8rem; }
+    .ratio-card { grid-template-columns: 1fr; gap: 0.4rem; }
+    .ratio-card-bcr { border-left: none; padding-left: 0; text-align: left; }
+    .ratio-cards-header { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Welfare Valuation of an EU Farrowing Crate Ban</h1>
+<p class="subtitle">AQALY Framework Application &mdash; Carpenter &amp; Kanepajs, 2026</p>
+
+<p style="font-size: 0.88rem; margin-top: 0.6rem; margin-bottom: 1rem;">This page applies the <strong>AQALY-4PD-9L</strong> framework &mdash; the Animal Quality-Adjusted Life Year with 4 Physical Domains assessed on a 9-Level welfare scale (Espinosa, Browning &amp; Treich, 2025) &mdash; to quantify and monetise the sow welfare difference between farrowing crates and free-farrowing systems.</p>
+
+<div class="draft-banner">
+  DRAFT &mdash; Domain grades pending expert validation
+</div>
+
+<div class="card" style="margin-bottom: 1.5rem;">
+  <h2 style="margin-top: 0; border-bottom: 2px solid var(--olive);">Expert Welfare Assessment: Marie Reinke</h2>
+  <p style="font-size: 0.85rem; margin-bottom: 1rem;">Marie Reinke conducted two complementary assessments of sow welfare under farrowing crate and free-farrowing (Swedish model, 6.5 m&sup2;) systems, using the Five Domains framework (Mellor, 2016) and EURCAW/Baxter et al. (2011) welfare indicators.</p>
+
+  <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Impact Assessment Grades (A&ndash;E scale)</h3>
+  <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem;">Each indicator scored on Severity, Intensity, Duration, and Confidence (0&ndash;4), combined into a composite grade: A (none, 0&ndash;0.20), B (low, 0.21&ndash;0.40), C (mild-moderate, 0.41&ndash;0.60), D (marked-severe, 0.61&ndash;0.80), E (very severe, 0.81&ndash;1.00).</p>
+
+  <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 1rem;">
+    <thead>
+      <tr>
+        <th style="padding: 0.4rem 0.6rem; text-align: left;">Indicator</th>
+        <th style="padding: 0.4rem 0.6rem; text-align: center;">Crate</th>
+        <th style="padding: 0.4rem 0.6rem; text-align: center;">Free</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="domain-group-header"><td colspan="3">Environment</td></tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Space and freedom to move</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">E</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">A</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Comfortable climatic conditions</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">D</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">A</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Separate pen into functional areas / elimination behaviour</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">E</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">B</td>
+      </tr>
+      <tr class="domain-group-header"><td colspan="3">Health</td></tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Injuries / Skin lesions</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">D</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">A</td>
+      </tr>
+      <tr class="domain-group-header"><td colspan="3">Behaviour</td></tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Nest-building and explorative behaviour</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">D</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">C</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Interaction between sow and piglets</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">D</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">A</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.4rem 0.6rem 0.4rem 1.4rem;">Freedom from sow at weaning</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--crate-color);">D</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center; font-weight: 700; color: var(--free-color);">A</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grade-question">
+    <strong>Question for Marie:</strong> Should the free-farrowing Environment grade be 5 rather than 6? The Swedish-model pen (6.5 m&sup2;, deep straw) largely resolves the thermal, spatial, and substrate deficits scored under the crate system. If the three Environment indicators average closer to A&ndash;B than A&ndash;B with one B pulling up, a composite grade of 5 (rather than 6) may better reflect the residual compromise.
+    <br><br>
+    <strong>Impact if E free = 5:</strong> Free-farrowing AQALY rises from +0.2562 to +0.3042; the crate-to-free welfare delta increases from +0.7621 to +0.8101 AQALY per year. All monetised values would scale proportionally.
+  </div>
+
+  <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 0;">Marie&rsquo;s assessment uses EURCAW welfare indicators and Baxter et al. (2011) criteria, operationalised via Mellor et al. (2016). The free-farrowing system receives A&ndash;C grades (none to mild-moderate), with only nest-building (C) and functional areas (B) showing any residual welfare compromise.</p>
+</div>
+
+<div class="card" style="margin-bottom: 2rem;">
+  <h2 style="margin-top: 0; border-bottom: 2px solid var(--olive);">Mapping of Five Domains Assessment to AQALY Grades</h2>
+  <p style="font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 1rem;">(For Marie's review and validation)</p>
+
+  <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 1rem;">
+    <thead>
+      <tr>
+        <th style="padding: 0.4rem 0.6rem; text-align: left;">Five Domains</th>
+        <th style="padding: 0.4rem 0.6rem; text-align: left;">AQALY Domain</th>
+        <th style="padding: 0.4rem 0.6rem; text-align: center;">Crate Grade</th>
+        <th style="padding: 0.4rem 0.6rem; text-align: center;">Free Grade</th>
+        <th style="padding: 0.4rem 0.6rem; text-align: left;">Key indicators from Five Domains assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem;">Nutrition</td>
+        <td style="padding: 0.4rem 0.6rem;">Nutrition</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">5</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">5</td>
+        <td style="padding: 0.4rem 0.6rem; font-size: 0.78rem;">Easy access to food/water without competition; minimal foraging material provision; liquid feed lacks fibre</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem;">Environment</td>
+        <td style="padding: 0.4rem 0.6rem;">Environment</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">8</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">6</td>
+        <td style="padding: 0.4rem 0.6rem; font-size: 0.78rem;">Thermoregulation impaired; ammonia exposure; no substrate; crate too small for modern breeds; no area separation</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--grid);">
+        <td style="padding: 0.4rem 0.6rem;">Health</td>
+        <td style="padding: 0.4rem 0.6rem;">Health</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">7</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">5</td>
+        <td style="padding: 0.4rem 0.6rem; font-size: 0.78rem;">Shoulder lesions; UTI risk; bursitis; vulva lesions; impaired locomotion/claw disorders; reduced muscle mass and bone strength</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.4rem 0.6rem;">Behaviour</td>
+        <td style="padding: 0.4rem 0.6rem;">Behavioural Interactions</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">8</td>
+        <td style="padding: 0.4rem 0.6rem; text-align: center;">4</td>
+        <td style="padding: 0.4rem 0.6rem; font-size: 0.78rem;">Locomotion prevented; nest-building thwarted (sham behaviour, stereotypies); no escape behaviour; limited piglet contact; no social interaction</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.4rem;"><strong>Grade scale:</strong> 1 = best possible welfare, 9 = worst possible welfare. AQALY uses a 9-level scale; Marie&rsquo;s Five Domains uses a 5-point scale (-2 to +2) per indicator, aggregated here by domain.</p>
+  <p style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.4rem;"><strong>Note:</strong> The AQALY-4PD-9L framework captures four physical domains. Mental State (Domain 5 of the Five Domains model) is not a separate scored input; it is the emergent welfare outcome that the AQALY score itself represents.</p>
+  <p style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0;"><strong>Status:</strong> Grades are PROPOSED, pending Marie&rsquo;s validation.</p>
+</div>
+
+<div class="key-message">
+  <strong>Core finding</strong>
+  The welfare gain from freeing a single sow from a farrowing crate is worth EUR 6.98 to EUR 158.07 per day (depending on moral weight), against an economic cost of EUR 0.22 per day to the farmer.
+</div>
+
+<!-- Section 1: Domain Grades -->
+<h2>Domain Grades Comparison</h2>
+<p>The AQALY framework assesses animal welfare across four physical domains on a 1&ndash;9 scale. Lower grades indicate better welfare.</p>
+
+<div class="card">
+  <div class="bar-legend">
+    <div class="bar-legend-item">
+      <div class="legend-swatch" style="background: var(--crate-color);"></div>
+      <span>Farrowing crate</span>
+    </div>
+    <div class="bar-legend-item">
+      <div class="legend-swatch" style="background: var(--free-color);"></div>
+      <span>Free farrowing</span>
+    </div>
+  </div>
+
+  <div class="domain-chart">
+    <div class="domain-label">Nutrition</div>
+    <div class="bar-row">
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill crate" style="width: 55.6%;"></div></div>
+        <div class="bar-value crate">5</div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill free" style="width: 55.6%;"></div></div>
+        <div class="bar-value free">5</div>
+      </div>
+    </div>
+
+    <div class="domain-label">Environment</div>
+    <div class="bar-row">
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill crate" style="width: 88.9%;"></div></div>
+        <div class="bar-value crate">8</div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill free" style="width: 66.7%;"></div></div>
+        <div class="bar-value free">6</div>
+      </div>
+    </div>
+
+    <div class="domain-label">Health</div>
+    <div class="bar-row">
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill crate" style="width: 77.8%;"></div></div>
+        <div class="bar-value crate">7</div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill free" style="width: 55.6%;"></div></div>
+        <div class="bar-value free">5</div>
+      </div>
+    </div>
+
+    <div class="domain-label">Behaviour</div>
+    <div class="bar-row">
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill crate" style="width: 88.9%;"></div></div>
+        <div class="bar-value crate">8</div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-track"><div class="bar-fill free" style="width: 44.4%;"></div></div>
+        <div class="bar-value free">4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grade-scale-note">Scale: 1 (best welfare) to 9 (worst welfare). Grades based on Five Domains assessment translated to AQALY-4PD-9L framework.</div>
+</div>
+
+<!-- Grade definitions -->
+<h3 style="margin-top: 1.8rem; margin-bottom: 0.6rem;">Welfare grade scale (1&ndash;9)</h3>
+<div class="card" style="padding: 0.8rem 1rem;">
+  <table class="grade-table">
+    <thead><tr><th>Grade</th><th>Welfare level</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Best possible</td><td>Reference state; no welfare decrement in this domain</td></tr>
+      <tr><td>2</td><td>Significant positive</td><td>Very good conditions; minor sub-optimality only</td></tr>
+      <tr><td>3</td><td>Mild positive</td><td>Good conditions</td></tr>
+      <tr><td>4</td><td>Minor positive</td><td>Above-neutral; basic positive provisions present</td></tr>
+      <tr><td>5</td><td>Neutral</td><td>Neither positive nor negative welfare in this domain</td></tr>
+      <tr><td>6</td><td>Minor negative</td><td>Below-neutral; some compromise of needs</td></tr>
+      <tr><td>7</td><td>Mild negative</td><td>Clear welfare compromise; chronic mild suffering</td></tr>
+      <tr><td>8</td><td>Severe negative</td><td>Significant suffering; multiple needs unmet</td></tr>
+      <tr><td>9</td><td>Very severe negative</td><td>Worst state; extreme and sustained suffering</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; margin-bottom: 0;">Grades 3, 5, 7, 9 measured directly via DCE-TTO (Espinosa et al. 2025). Grades 2, 4, 6, 8 interpolated via PCHIP.</p>
+</div>
+
+<!-- Domain detail panels -->
+<h3 style="margin-top: 1.8rem; margin-bottom: 0.6rem;">Domain-by-domain assessment</h3>
+
+<div class="domain-detail">
+  <div class="domain-detail-title">Nutrition</div>
+  <div class="domain-figure" data-domain="N"></div>
+  <div class="domain-description">
+    <span class="marker-crate">Crate 5</span> &middot; <span class="marker-free">Free 5</span><br>
+    Lactation diets are nutritionally similar across housing systems. Both receive standard commercial rations formulated for peak milk output. No meaningful difference in nutritional welfare; both scored as neutral.
+  </div>
+</div>
+
+<div class="domain-detail">
+  <div class="domain-detail-title">Environment</div>
+  <div class="domain-figure" data-domain="E"></div>
+  <div class="domain-description">
+    <span class="marker-crate">Crate 8</span>: Spatial restriction confines the sow to a metal frame (~0.6 &times; 2.1 m) with no turning possible, limited to standing and lying. Bare or slatted flooring with no manipulable substrate. Thermoregulation compromised (unable to move to cooler/warmer zones), poor air quality from ammonia exposure, inadequate lighting regimes, and noise stress from neighbouring sows.<br>
+    <span class="marker-free">Free 6</span>: Indoor pen (~6.5 m&sup2;) with deep straw bedding and freedom of movement. Thermoregulation possible through postural and positional choice. Sensory diversity from bedding manipulation, more natural light/dark cycle exposure. Still industrial single-sow housing with hard boundaries; basic spatial and thermal needs are met, but limited enrichment variety and no outdoor access keep this below neutral.
+  </div>
+</div>
+
+<div class="domain-detail">
+  <div class="domain-detail-title">Health</div>
+  <div class="domain-figure" data-domain="H"></div>
+  <div class="domain-description">
+    <span class="marker-crate">Crate 7</span>: Shoulder ulcers from prolonged recumbency on hard surfaces, urinary tract infections, lameness, and muscle atrophy. Stereotypic bar-biting from frustration. Physiological stress markers elevated.<br>
+    <span class="marker-free">Free 5</span>: Pressure injuries largely eliminated; improved musculoskeletal condition from regular movement. Neutral rather than positive because some trade-offs persist (indoor air quality limits, seasonal thermal challenges).
+  </div>
+</div>
+
+<div class="domain-detail">
+  <div class="domain-detail-title">Behavioural Interactions</div>
+  <div class="domain-figure" data-domain="B"></div>
+  <div class="domain-description">
+    <span class="marker-crate">Crate 8</span>: Complete inability to perform nest-building (the sow's strongest pre-farrowing motivation). No maternal choice over piglet contact; interaction timing forced by physical structure. Prevention of locomotion leads to development of stereotypies (bar-biting, sham-chewing). No escape from distressing stimuli possible. Social interaction with other sows entirely prevented.<br>
+    <span class="marker-free">Free 4</span>: Nest-building possible with straw provision; sow controls piglet interaction and can express core maternal behaviours. Social investigation of environment enabled, escape and avoidance behaviour possible, reduced stereotypy expression.
+  </div>
+</div>
+
+<!-- Section 2: AQALY Scores -->
+<h2>AQALY Scores</h2>
+<p>Each domain grade maps to a coefficient from Table A2 (Espinosa et al. 2025, merged sample N=1,062, PCHIP interpolation). These coefficients represent the welfare decrement relative to grade 1 (best possible).</p>
+
+
+<p style="font-size: 0.82rem; color: var(--muted); margin-top: 0.8rem;">Coefficients are welfare decrements estimated via discrete choice experiments and time-trade-off tasks. Grade 1 = 0 (reference); grade 9 = most severe. Higher absolute values mean worse welfare in that domain.</p>
+
+<h3 style="margin-top: 1.5rem;">Aggregation formula</h3>
+<p style="font-size: 0.88rem; margin-bottom: 0.4rem;">AQALY per year = 1 + &beta;<sub>Nutrition</sub> + &beta;<sub>Environment</sub> + &beta;<sub>Health</sub> + &beta;<sub>Behaviour</sub></p>
+
+<div class="card" style="font-family: monospace; font-size: 0.82rem; line-height: 1.8;">
+  <div style="margin-bottom: 0.8rem;">
+    <span style="font-weight: 600; color: var(--crate-color); font-family: inherit;">Farrowing crate:</span><br>
+    = 1 + (&minus;0.1502) + (&minus;0.4977) + (&minus;0.2976) + (&minus;0.5604)<br>
+    = 1 &minus; 1.5059<br>
+    <span style="font-weight: 700;">= &minus;0.5059 AQALY/year</span>
+  </div>
+  <div>
+    <span style="font-weight: 600; color: var(--free-color); font-family: inherit;">Free farrowing:</span><br>
+    = 1 + (&minus;0.1502) + (&minus;0.2659) + (&minus;0.1440) + (&minus;0.1837)<br>
+    = 1 &minus; 0.7438<br>
+    <span style="font-weight: 700;">= +0.2562 AQALY/year</span>
+  </div>
+</div>
+
+<div class="aqaly-scores" style="margin-top: 1.2rem;">
+  <div class="aqaly-box crate">
+    <div class="aqaly-label">Farrowing crate</div>
+    <div class="aqaly-value" style="color: var(--crate-color);">&minus;0.5059</div>
+    <div class="aqaly-unit">AQALY / year</div>
+  </div>
+  <div class="aqaly-box free">
+    <div class="aqaly-label">Free farrowing</div>
+    <div class="aqaly-value" style="color: var(--free-color);">+0.2562</div>
+    <div class="aqaly-unit">AQALY / year</div>
+  </div>
+  <div class="aqaly-box delta">
+    <div class="aqaly-label">Welfare gain (delta)</div>
+    <div class="aqaly-value" style="color: var(--olive);">+0.7621</div>
+    <div class="aqaly-unit">AQALY / year (0.0585 per 28-day block)</div>
+  </div>
+</div>
+
+<p style="font-size: 0.85rem; color: var(--muted);">A crated sow's year is worth &minus;0.51 annualized. A free-farrowing sow achieves +0.26. The difference of +0.76 AQALY/year represents the sow welfare difference between the two systems.</p>
+
+<!-- Section 3: Monetisation -->
+<h2>Monetised Welfare Value</h2>
+<p>Welfare gains monetised via the human QALY threshold (EUR 147,000), scaled by a moral weight representing how much a pig-year matters relative to a human-year.</p>
+
+<div class="toggle-container">
+  <button class="toggle-btn active" onclick="setMoralWeight('wtp')" id="btn-wtp">WTP (Eurobarometer)</button>
+  <button class="toggle-btn" onclick="setMoralWeight('neuron')" id="btn-neuron">Neuron count (1/44)</button>
+  <button class="toggle-btn" onclick="setMoralWeight('rp')" id="btn-rp">Welfare Range (0.515)</button>
+</div>
+
+<p style="font-size: 0.82rem; color: var(--muted); text-align: center; margin-bottom: 1rem;">
+  <span id="mw-description">WTP (Eurobarometer): ~5% retail price premium from EU consumer surveys. Market-revealed cross-check.</span>
+</p>
+
+<div class="value-grid">
+  <div class="value-card">
+    <div class="value-card-label">Per sow-crate-day</div>
+    <div class="value-card-number" id="val-scd">EUR 7.80</div>
+    <div class="value-card-sub">welfare benefit per day of freedom</div>
+  </div>
+  <div class="value-card">
+    <div class="value-card-label">Per sow per lactation (28 days)</div>
+    <div class="value-card-number" id="val-lactation">EUR 218.40</div>
+    <div class="value-card-sub">one farrowing cycle</div>
+  </div>
+  <div class="value-card">
+    <div class="value-card-label">Per sow per year (2.3 litters)</div>
+    <div class="value-card-number" id="val-year">EUR 502.32</div>
+    <div class="value-card-sub">annual welfare value</div>
+  </div>
+  <div class="value-card">
+    <div class="value-card-label">Per kg of pork</div>
+    <div class="value-card-number" id="val-kg">EUR 2.13</div>
+    <div class="value-card-sub">welfare cost embedded in output</div>
+  </div>
+</div>
+
+<!-- BCR -->
+<div class="bcr-highlight">
+  <div class="bcr-label">Benefit-Cost Ratio</div>
+  <div class="bcr-value" id="val-bcr">35.5x</div>
+  <div class="bcr-sub" id="bcr-sub">Welfare benefit exceeds economic cost by a factor of <span id="bcr-factor">35</span></div>
+</div>
+
+<!-- Section 4: Cost-Benefit Comparison (static) -->
+<h2>Cost-Benefit Comparison</h2>
+<p>Welfare benefit alongside economic cost to the producer, across three valuation approaches.</p>
+
+<div class="ratio-cards-header">
+  <div>Valuation method</div>
+  <div style="text-align: right;">Per sow-crate-day</div>
+  <div style="text-align: right;">Per kg of pork</div>
+  <div style="text-align: center; min-width: 4.5rem;">Benefit-cost ratio</div>
+</div>
+<div class="ratio-cards">
+  <div class="ratio-card">
+    <div class="ratio-card-method">Willingness-to-Pay (approx. 5% retail premium, consumer surveys)</div>
+    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val">7.80</span></div>
+    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val">2.13</span></div>
+    <div class="ratio-card-bcr">35.5&times;</div>
+  </div>
+  <div class="ratio-card">
+    <div class="ratio-card-method">Direct approach based on Neuron count (1/44 welfare weight)</div>
+    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val">6.98</span></div>
+    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val">1.90</span></div>
+    <div class="ratio-card-bcr">31.7&times;</div>
+  </div>
+  <div class="ratio-card">
+    <div class="ratio-card-method">Direct approach based on Welfare Range (0.515)</div>
+    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val">158.07</span></div>
+    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val">43.10</span></div>
+    <div class="ratio-card-bcr">718.5&times;</div>
+  </div>
+</div>
+<p style="font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.3rem;">All values in EUR. <span style="color: var(--crate-color);">Cost</span> = economic cost to producer. <span style="color: var(--teal); font-weight: 600;">Benefit</span> = monetised welfare gain.</p>
+
+<!-- Section 5: WTP Comparison -->
+<h2>Willingness-to-Pay Comparison</h2>
+<div class="card">
+  <p style="font-size: 0.88rem; margin-bottom: 0.8rem;">Consumer willingness-to-pay (WTP) for pig welfare improvements provides an independent cross-check on the AQALY-derived values. Two meta-analyses anchor the literature:</p>
+
+  <ul style="font-size: 0.85rem; margin-bottom: 0.8rem;">
+    <li><strong>Clark et al. (2017):</strong> 54 studies, 335 WTP estimates, 17 countries (56% EU). Found positive WTP across all species, with pigs receiving the lowest premium of any livestock species. Northern EU countries showed lower WTP, attributed to higher trust in existing regulation.</li>
+    <li><strong>Lagerkvist &amp; Hess (2011):</strong> 24 studies, 106 estimates. Found 50&ndash;150% stated premiums for welfare improvements, but noted substantial hypothetical bias inflating stated over revealed preferences.</li>
+  </ul>
+
+  <p style="font-size: 0.85rem; margin-bottom: 0.6rem;">Approximate conversion to the sow-crate-day unit used in this assessment:</p>
+  <ul style="font-size: 0.85rem; margin-bottom: 0.8rem;">
+    <li><strong>Eurobarometer (2023) median:</strong> ~5% retail price premium &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = <strong>~EUR 7.8 per sow-crate-day</strong></li>
+    <li><strong>German Tierwohl levy (revealed preference):</strong> EUR 0.0625/kg &times; 1,800 kg &divide; 69 days = <strong>~EUR 1.6 per sow-crate-day</strong></li>
+  </ul>
+
+  <p style="font-size: 0.88rem; margin-bottom: 0.6rem;">The Eurobarometer-derived estimate of ~EUR 7.8 per sow-crate-day converges with the AQALY Neuron count estimate of EUR 6.98 per sow-crate-day. This convergence between a top-down survey-based approach and a bottom-up welfare-science approach is notable, though the WTP estimates carry wide uncertainty bands and are not specific to farrowing crate removal.</p>
+
+</div>
+
+<!-- Section 6: Methodology -->
+<h2>Methodology</h2>
+
+<div class="collapsible-header" onclick="toggleSection('method-aqaly')">
+  <span class="collapsible-arrow" id="arrow-method-aqaly">&#9654;</span>
+  AQALY Framework
+</div>
+<div class="collapsible-content" id="method-aqaly">
+  <p>The Animal Quality-Adjusted Life Year (AQALY) framework was developed by Espinosa, Browning, and Treich (2025). It adapts the human QALY concept for animal welfare valuation using a discrete choice experiment (DCE) with time trade-off (TTO) methodology.</p>
+  <p>The 4PD-9L variant used here assesses four physical domains (Nutrition, Environment, Health, Behaviour) on a nine-grade scale. Coefficients were estimated from a merged sample of N=1,062 respondents. Domain grades for this assessment were translated from a Five Domains analysis by Marie Reinke.</p>
+  <p>Formula: AQALY/year = 1 + &beta;<sub>Nutrition</sub> + &beta;<sub>Environment</sub> + &beta;<sub>Health</sub> + &beta;<sub>Behaviour</sub></p>
+  <p>The resulting AQALY difference is pro-rated to a 28-day lactation block and monetised at the EU WTP threshold for a human QALY (EUR 147,000), scaled by a moral weight.</p>
+</div>
+
+<div class="collapsible-header" onclick="toggleSection('method-weights')">
+  <span class="collapsible-arrow" id="arrow-method-weights">&#9654;</span>
+  Moral Weight Choices
+</div>
+<div class="collapsible-content" id="method-weights">
+  <p><strong>WTP / Eurobarometer (EUR 7.8/SCD):</strong> Derived from Eurobarometer (2023) median willingness-to-pay of ~5% retail price premium. Converted: 5% &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = ~EUR 7.8 per sow-crate-day. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science. Its convergence with the Neuron count estimate (EUR 6.98) is notable.</p>
+  <p><strong>Neuron count (1/44 = 0.0227):</strong> The ratio of cortical neurons between pig (~2.2 billion) and human (~86 billion, of which cortical ~16 billion) brains. A conservative lower bound that treats raw neuron count as the sole determinant of moral weight.</p>
+  <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (0.515):</strong> The Rethink Priorities Welfare Range estimate, which aggregates across multiple theories of consciousness and moral status. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
+  <p>These three approaches span the plausible range. WTP and Neuron count converge near EUR 7-8 per sow-crate-day; the Welfare Range estimate is an order of magnitude higher, reflecting ethical frameworks that assign pigs substantially more moral weight than neuron proportionality alone implies.</p>
+</div>
+
+<div class="collapsible-header" onclick="toggleSection('method-econ')">
+  <span class="collapsible-arrow" id="arrow-method-econ">&#9654;</span>
+  Economic Cost Source
+</div>
+<div class="collapsible-content" id="method-econ">
+  <p>The economic cost of EUR 0.22 per sow-crate-day comes from the EUFF economic module, which estimates the net producer cost of transitioning from farrowing crates to free-farrowing systems. This figure integrates capital costs (pen conversion), operating cost changes (labour, feed, mortality), and productivity effects across the EU-27 herd.</p>
+  <p>EUR 136 per sow per year and EUR 0.06 per kg of pork are derived from the same module using standard denominators (2.3 litters/year, EU-average output per sow).</p>
+</div>
+
+<div class="collapsible-header" onclick="toggleSection('method-limits')">
+  <span class="collapsible-arrow" id="arrow-method-limits">&#9654;</span>
+  Limitations
+</div>
+<div class="collapsible-content" id="method-limits">
+  <ul>
+    <li>Domain grades are preliminary, pending validation by animal welfare scientists. Grade assignments involve judgment calls in translating Five Domains qualitative assessments to the AQALY numeric scale.</li>
+    <li>The AQALY framework captures physical domains only. Mental/affective states beyond those expressed through physical domains are not directly measured.</li>
+    <li>Moral weight is the most consequential parameter. Moving from the Neuron count floor to the Welfare Range estimate multiplies all values by a factor of 22.7.</li>
+    <li>The EUR 147,000 QALY threshold reflects EU-average health-economic valuation; national thresholds vary.</li>
+    <li>The comparison assumes 28 continuous crate-days per litter. Temporary-crating systems (confinement for a subset of days) would reduce the delta proportionally.</li>
+  </ul>
+</div>
+
+
+<script>
+// Data
+const data = {
+  neuron: {
+    scd: 6.98,
+    lactation: 195.32,
+    year: 449.23,
+    kg: 1.90,
+    bcr: 31.7,
+    bcrRound: 32,
+    description: 'Neuron count: cortical neuron ratio between pig and human brains. Conservative lower bound.'
+  },
+  rp: {
+    scd: 158.07,
+    lactation: 4425.90,
+    year: 10179.58,
+    kg: 43.10,
+    bcr: 718.5,
+    bcrRound: 719,
+    description: 'Welfare Range (Rethink Priorities): aggregates across multiple theories of consciousness and moral status.'
+  },
+  wtp: {
+    scd: 7.80,
+    lactation: 218.40,
+    year: 502.32,
+    kg: 2.13,
+    bcr: 35.5,
+    bcrRound: 35,
+    description: 'Willingness-to-pay: Eurobarometer (2023) median ~5% retail premium, converted to sow-crate-day basis.'
+  }
+};
+
+const costs = {
+  scd: 0.22,
+  kg: 0.06
+};
+
+let currentWeight = 'wtp';
+
+function setMoralWeight(w) {
+  currentWeight = w;
+  document.getElementById('btn-neuron').classList.toggle('active', w === 'neuron');
+  document.getElementById('btn-wtp').classList.toggle('active', w === 'wtp');
+  document.getElementById('btn-rp').classList.toggle('active', w === 'rp');
+
+  const d = data[w];
+  document.getElementById('val-scd').textContent = 'EUR ' + d.scd.toFixed(2);
+  document.getElementById('val-lactation').textContent = 'EUR ' + formatNumber(d.lactation);
+  document.getElementById('val-year').textContent = 'EUR ' + formatNumber(d.year);
+  document.getElementById('val-kg').textContent = 'EUR ' + d.kg.toFixed(2);
+  document.getElementById('val-bcr').textContent = d.bcr.toFixed(1) + 'x';
+  document.getElementById('bcr-factor').textContent = d.bcrRound;
+  document.getElementById('mw-description').textContent = d.description;
+}
+
+function formatNumber(n) {
+  if (n >= 1000) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  return n.toFixed(2);
+}
+
+function toggleSection(id) {
+  const content = document.getElementById(id);
+  const arrow = document.getElementById('arrow-' + id);
+  content.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// Domain coefficient figures
+(function() {
+  const COEFFICIENTS = {
+    N: [0, -0.0593, -0.1025, -0.1267, -0.1502, -0.1840, -0.2399, -0.4128, -0.7148],
+    E: [0, -0.0981, -0.1627, -0.1910, -0.2179, -0.2659, -0.3422, -0.4977, -0.7392],
+    H: [0, -0.0173, -0.0454, -0.0875, -0.1440, -0.2058, -0.2976, -0.5099, -0.8502],
+    B: [0, -0.0546, -0.1148, -0.1837, -0.2529, -0.3034, -0.3697, -0.5604, -0.8806]
+  };
+  const GRADES = { crate: {N:5, E:8, H:7, B:8}, free: {N:5, E:6, H:5, B:4} };
+
+  const W = 220, H = 200;
+  const TOP = 18, BOT = 182;
+  const AXIS_X = 48;
+  const DOT_X = 55;
+  const RANGE = BOT - TOP; // 164px for coefficient range 0 to -1
+
+  function yPos(coeff) { return TOP + Math.abs(coeff) * RANGE; }
+
+  function buildSVG(domain) {
+    const coeffs = COEFFICIENTS[domain];
+    const crateGrade = GRADES.crate[domain];
+    const freeGrade = GRADES.free[domain];
+    const crateCoeff = coeffs[crateGrade - 1];
+    const freeCoeff = coeffs[freeGrade - 1];
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+
+    // Gridlines and y-axis labels
+    const gridVals = [0, -0.25, -0.5, -0.75, -1.0];
+    gridVals.forEach(v => {
+      const y = yPos(v);
+      svg += `<text x="${AXIS_X - 6}" y="${y + 4}" text-anchor="end" font-size="10" fill="#6a7a72">${v.toFixed(2)}</text>`;
+    });
+
+    // Axis line
+    svg += `<line x1="${AXIS_X}" y1="${TOP - 4}" x2="${AXIS_X}" y2="${BOT + 4}" stroke="#6a7a72" stroke-width="1.5"/>`;
+
+    // All 9 grade dots (small gray)
+    coeffs.forEach((c, i) => {
+      const grade = i + 1;
+      const y = yPos(c);
+      const isActive = (grade === crateGrade || grade === freeGrade);
+      if (!isActive) {
+        svg += `<circle cx="${DOT_X}" cy="${y}" r="3.5" fill="#d8d8d4" stroke="#bbb" stroke-width="0.5"/>`;
+        svg += `<text x="${DOT_X + 10}" y="${y + 3.5}" font-size="9" fill="#999">${grade}</text>`;
+      }
+    });
+
+    // Active grade circles
+    if (crateGrade === freeGrade) {
+      // Both on same grade - show split circle
+      const y = yPos(crateCoeff);
+      svg += `<circle cx="${DOT_X}" cy="${y}" r="9" fill="#c890a0" stroke="#fff" stroke-width="1.5"/>`;
+      svg += `<circle cx="${DOT_X}" cy="${y}" r="9" fill="url(#split-${domain})" stroke="#fff" stroke-width="1.5"/>`;
+      svg += `<defs><linearGradient id="split-${domain}" x1="0" y1="0" x2="1" y2="0">`;
+      svg += `<stop offset="50%" stop-color="#c890a0"/><stop offset="50%" stop-color="#88a8a8"/></linearGradient></defs>`;
+      // Label
+      svg += `<line x1="${DOT_X + 12}" y1="${y}" x2="${DOT_X + 30}" y2="${y}" stroke="#6a7a72" stroke-width="0.8"/>`;
+      svg += `<text x="${DOT_X + 34}" y="${y - 5}" font-size="10" font-weight="600" fill="#c890a0">Crate (${crateCoeff.toFixed(3)})</text>`;
+      svg += `<text x="${DOT_X + 34}" y="${y + 9}" font-size="10" font-weight="600" fill="#88a8a8">Free (${freeCoeff.toFixed(3)})</text>`;
+    } else {
+      // Crate circle
+      const yCrate = yPos(crateCoeff);
+      svg += `<circle cx="${DOT_X}" cy="${yCrate}" r="9" fill="#c890a0" stroke="#fff" stroke-width="1.5"/>`;
+      svg += `<text x="${DOT_X}" y="${yCrate + 3.5}" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">${crateGrade}</text>`;
+      svg += `<line x1="${DOT_X + 12}" y1="${yCrate}" x2="${DOT_X + 30}" y2="${yCrate}" stroke="#c890a0" stroke-width="0.8"/>`;
+      svg += `<text x="${DOT_X + 34}" y="${yCrate + 4}" font-size="10" font-weight="600" fill="#c890a0">Crate (${crateCoeff.toFixed(3)})</text>`;
+
+      // Free circle
+      const yFree = yPos(freeCoeff);
+      svg += `<circle cx="${DOT_X}" cy="${yFree}" r="9" fill="#88a8a8" stroke="#fff" stroke-width="1.5"/>`;
+      svg += `<text x="${DOT_X}" y="${yFree + 3.5}" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">${freeGrade}</text>`;
+      svg += `<line x1="${DOT_X + 12}" y1="${yFree}" x2="${DOT_X + 30}" y2="${yFree}" stroke="#88a8a8" stroke-width="0.8"/>`;
+      svg += `<text x="${DOT_X + 34}" y="${yFree + 4}" font-size="10" font-weight="600" fill="#88a8a8">Free (${freeCoeff.toFixed(3)})</text>`;
+
+    }
+
+    svg += `</svg>`;
+    return svg;
+  }
+
+  document.querySelectorAll('.domain-figure').forEach(el => {
+    const domain = el.getAttribute('data-domain');
+    if (domain && COEFFICIENTS[domain]) {
+      el.innerHTML = buildSVG(domain);
+    }
+  });
+})();
+
+</script>
+
+</body>
+</html>
