@@ -1056,31 +1056,32 @@
       <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600;">Valuation method</th>
       <th style="text-align: right; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600;">Per sow-crate-day</th>
       <th style="text-align: right; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600;">Per kg of pork</th>
-      <th style="text-align: center; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600; min-width: 5rem;">Benefit-cost ratio</th>
     </tr>
   </thead>
   <tbody>
     <tr id="ratio-wtp" style="border-bottom: 1px solid var(--grid);">
       <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Consumer WTP (Clark et al. 2017, EUR 0.54/kg)</td>
-      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-wtp-scd">14.09</span></td>
-      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-wtp-kg">0.54</span></td>
-      <td style="text-align: center; padding: 0.7rem 0.6rem; font-size: 1.2rem; font-weight: 800; color: var(--teal);" id="rc-wtp-bcr">64.0&times;</td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-wtp-scd">14.09</span> <span style="color: var(--muted); font-size: 0.85em;" id="rc-wtp-scd-bcr">(64.0&times;)</span></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-wtp-kg">0.54</span> <span style="color: var(--muted); font-size: 0.85em;" id="rc-wtp-kg-bcr">(9.0&times;)</span></td>
     </tr>
     <tr id="ratio-neuron" style="border-bottom: 1px solid var(--grid);">
       <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Direct: Neuron count (1/44)</td>
-      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-neuron-scd"></span></td>
-      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-neuron-kg"></span></td>
-      <td style="text-align: center; padding: 0.7rem 0.6rem; font-size: 1.2rem; font-weight: 800; color: var(--teal);" id="rc-neuron-bcr"></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-neuron-scd"></span> <span style="color: var(--muted); font-size: 0.85em;" id="rc-neuron-scd-bcr"></span></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-neuron-kg"></span> <span style="color: var(--muted); font-size: 0.85em;" id="rc-neuron-kg-bcr"></span></td>
     </tr>
     <tr id="ratio-rp">
       <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Direct: Welfare Range (0.515)</td>
-      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-scd"></span></td>
-      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-kg"></span></td>
-      <td style="text-align: center; padding: 0.7rem 0.6rem; font-size: 1.2rem; font-weight: 800; color: var(--teal);" id="rc-rp-bcr"></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-scd"></span> <span style="color: var(--muted); font-size: 0.85em;" id="rc-rp-scd-bcr"></span></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-kg"></span> <span style="color: var(--muted); font-size: 0.85em;" id="rc-rp-kg-bcr"></span></td>
     </tr>
   </tbody>
 </table>
 <p style="font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.3rem;">All values in EUR. <span style="color: var(--crate-color);">Cost</span> = economic cost to producer. <span style="color: var(--teal); font-weight: 600;">Benefit</span> = monetised welfare gain.</p>
+
+<p style="font-size: 0.78rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5;">
+<strong style="color: var(--text);">Why do the per-SCD and per-kg ratios differ for Consumer WTP?</strong>
+The EUR&nbsp;0.54/kg is an independent empirical estimate from Clark et al.'s stated-preference meta-analysis. It converts to EUR&nbsp;14.09/SCD via production parameters (1,800&nbsp;kg pork per sow per year &divide;&nbsp;69 crate-days = 26.1&nbsp;kg per crate-day). The cost side uses different parameters from the economic module: EUR&nbsp;0.22/SCD and EUR&nbsp;0.06/kg imply 3.7&nbsp;kg per crate-day. Because the two conversion ratios differ (26.1 vs 3.7), the benefit-cost ratios differ too. For Neuron count and Welfare Range, per-kg values are derived from per-SCD using the cost-side ratio, so their ratios match across both columns.
+</p>
 
 <!-- Section 5: WTP Comparison -->
 <h2>Comparison with Other Estimates</h2>
@@ -1088,9 +1089,9 @@
   <p style="font-size: 0.88rem; margin-bottom: 0.8rem;">The Clark et al. (2017) meta-analytic WTP of EUR 0.54/kg used in the first toggle can be cross-checked against other estimates and proposals:</p>
 
   <ul style="font-size: 0.85rem; margin-bottom: 0.8rem;">
-    <li><strong>Borchert Commission (2020):</strong> The German <em>Kompetenznetzwerk Nutztierhaltung</em> proposed a consumer surcharge of EUR 0.40/kg pork to fund animal welfare improvements (EUR 10.43/SCD, BCR 47.4&times;). Expert proposal, never enacted. <a href="https://www.bmel.de/SharedDocs/Downloads/DE/_Tiere/Tierschutz/zukunftskommission-landwirtschaft.html" target="_blank" rel="noopener" style="color: var(--teal);">BMEL source</a>.</li>
-    <li><strong>Lagerkvist &amp; Hess (2011):</strong> 24 studies, 106 estimates. Found 50&ndash;150% stated premiums for welfare improvements, but noted substantial hypothetical bias inflating stated over revealed preferences.</li>
-    <li><strong>Eurobarometer 533 (2023):</strong> 60% of EU citizens willing to pay more for welfare-friendly products; 26% would pay up to 5% more. At a 5% retail premium on EUR 6/kg pork, this implies ~EUR 7.8/SCD.</li>
+    <li><a href="https://www.bmel.de/SharedDocs/Downloads/DE/_Tiere/Tierschutz/zukunftskommission-landwirtschaft.html" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 700;">Borchert Commission (2020):</a> The German <em>Kompetenznetzwerk Nutztierhaltung</em> proposed a consumer surcharge of EUR 0.40/kg pork to fund animal welfare improvements (EUR 10.43/SCD, BCR 47.4&times;). Expert proposal, never enacted.</li>
+    <li><a href="https://doi.org/10.1016/j.foodpol.2010.11.013" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 700;">Lagerkvist &amp; Hess (2011):</a> 24 studies, 106 estimates. Found 50&ndash;150% stated premiums for welfare improvements, but noted substantial hypothetical bias inflating stated over revealed preferences.</li>
+    <li><a href="https://europa.eu/eurobarometer/surveys/detail/2996" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 700;">Eurobarometer 533 (2023):</a> 60% of EU citizens willing to pay more for welfare-friendly products; 26% would pay up to 5% more. At a 5% retail premium on EUR 6/kg pork, this implies ~EUR 7.8/SCD.</li>
   </ul>
 
   <p style="font-size: 0.88rem; margin-bottom: 0.6rem;" id="wtp-context-text"></p>
@@ -1264,6 +1265,7 @@ function buildMonetisationData(delta) {
   var wtp_lactation = wtp_scd * 28;
   var wtp_year = wtp_lactation * 2.3;
   var wtp_bcr = wtp_scd / 0.22;
+  var wtp_bcr_kg = wtp_kg / 0.06;
 
   // Neuron count: delta x (1/44) x 147000 / 365
   var neuron_scd = delta * (1/44) * 147000 / 365;
@@ -1271,6 +1273,7 @@ function buildMonetisationData(delta) {
   var neuron_year = neuron_lactation * 2.3;
   var neuron_kg = neuron_scd * (0.06 / 0.22);
   var neuron_bcr = neuron_scd / 0.22;
+  var neuron_bcr_kg = neuron_kg / 0.06;
 
   // Welfare Range: delta x 0.515 x 147000 / 365
   var rp_scd = delta * 0.515 * 147000 / 365;
@@ -1278,6 +1281,7 @@ function buildMonetisationData(delta) {
   var rp_year = rp_lactation * 2.3;
   var rp_kg = rp_scd * (0.06 / 0.22);
   var rp_bcr = rp_scd / 0.22;
+  var rp_bcr_kg = rp_kg / 0.06;
 
   return {
     wtp: {
@@ -1286,6 +1290,7 @@ function buildMonetisationData(delta) {
       year: wtp_year,
       kg: wtp_kg,
       bcr: wtp_bcr,
+      bcr_kg: wtp_bcr_kg,
       bcrRound: Math.round(wtp_bcr),
       description: 'Consumer WTP (Clark et al. 2017): meta-analytic consumer willingness-to-pay for pig welfare improvements = EUR 0.54/kg pork, from 13 studies and 90 WTP measures. Converted to per sow-crate-day via production ratio (1,800 kg pork/sow/year &divide; 69 crate-days/sow/year).'
     },
@@ -1295,6 +1300,7 @@ function buildMonetisationData(delta) {
       year: neuron_year,
       kg: neuron_kg,
       bcr: neuron_bcr,
+      bcr_kg: neuron_bcr_kg,
       bcrRound: Math.round(neuron_bcr),
       description: 'Neuron count: cortical neuron ratio between pig and human brains.'
     },
@@ -1304,6 +1310,7 @@ function buildMonetisationData(delta) {
       year: rp_year,
       kg: rp_kg,
       bcr: rp_bcr,
+      bcr_kg: rp_bcr_kg,
       bcrRound: Math.round(rp_bcr),
       description: '<a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (Rethink Priorities): aggregates across multiple theories of consciousness and hedonic capacity.'
     }
@@ -1468,20 +1475,15 @@ function renderAQALY() {
 // Render: ratio cards (Cost-Benefit table)
 // ============================================================
 function renderRatioCards() {
-  // Consumer WTP: constant (Clark et al. 2017)
-  document.getElementById('rc-wtp-scd').textContent = data.wtp.scd.toFixed(2);
-  document.getElementById('rc-wtp-kg').textContent = data.wtp.kg.toFixed(2);
-  document.getElementById('rc-wtp-bcr').innerHTML = data.wtp.bcr.toFixed(1) + '&times;';
-
-  // Neuron
-  document.getElementById('rc-neuron-scd').textContent = data.neuron.scd.toFixed(2);
-  document.getElementById('rc-neuron-kg').textContent = data.neuron.kg.toFixed(2);
-  document.getElementById('rc-neuron-bcr').innerHTML = data.neuron.bcr.toFixed(1) + '&times;';
-
-  // Welfare Range
-  document.getElementById('rc-rp-scd').textContent = data.rp.scd.toFixed(2);
-  document.getElementById('rc-rp-kg').textContent = data.rp.kg.toFixed(2);
-  document.getElementById('rc-rp-bcr').innerHTML = data.rp.bcr.toFixed(1) + '&times;';
+  var methods = ['wtp', 'neuron', 'rp'];
+  for (var i = 0; i < methods.length; i++) {
+    var m = methods[i];
+    var d = data[m];
+    document.getElementById('rc-' + m + '-scd').textContent = d.scd.toFixed(2);
+    document.getElementById('rc-' + m + '-kg').textContent = d.kg.toFixed(2);
+    document.getElementById('rc-' + m + '-scd-bcr').innerHTML = '(' + d.bcr.toFixed(1) + '&times;)';
+    document.getElementById('rc-' + m + '-kg-bcr').innerHTML = '(' + d.bcr_kg.toFixed(1) + '&times;)';
+  }
 }
 
 // ============================================================
