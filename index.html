@@ -543,8 +543,8 @@
 </div>
 
 <div class="card" style="margin-bottom: 1.5rem;">
-  <h2 style="margin-top: 0; border-bottom: 2px solid var(--olive);">Expert Welfare Assessment: Marie Reinke</h2>
-  <p style="font-size: 0.85rem; margin-bottom: 1rem;">Marie Reinke conducted two complementary assessments of sow welfare under farrowing crate and free-farrowing (Swedish model, 6.5 m&sup2;) systems, using the Five Domains framework (Mellor, 2016) and EURCAW/Baxter et al. (2011) welfare indicators.</p>
+  <h2 style="margin-top: 0; border-bottom: 2px solid var(--olive);">Expert Welfare Assessment: Marie</h2>
+  <p style="font-size: 0.85rem; margin-bottom: 1rem;">Marie conducted two complementary assessments of sow welfare under farrowing crate and free-farrowing (Swedish model, 6.5 m&sup2;) systems, using the Five Domains framework (Mellor, 2016) and EURCAW/Baxter et al. (2011) welfare indicators.</p>
 
   <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Table 1: Impact Assessment
     <span class="source-link" style="margin-left: 0.5rem; font-weight: 400;">(<a href="https://docs.google.com/spreadsheets/d/1DPcNffJynIMzErB4iXreYDV_Rz-ICbjOGYy_hZSGvuw/edit?gid=190678006#gid=190678006" target="_blank" rel="noopener">Source: Impact Assessment sheet</a>)</span>
@@ -912,7 +912,7 @@
       <tr><td>9</td><td>Very severe negative</td><td>Worst state; extreme and sustained suffering</td></tr>
     </tbody>
   </table>
-  <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; margin-bottom: 0;">Grades 3, 5, 7, 9 measured directly via DCE-TTO (Espinosa et al. 2025). Grades 2, 4, 6, 8 interpolated via PCHIP.</p>
+  <p style="font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; margin-bottom: 0;">Grades 3, 5, 7, 9 measured directly via DCE-TTO (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5255360" target="_blank" rel="noopener" style="color: var(--teal);">Espinosa et al. 2025</a>). Grades 2, 4, 6, 8 interpolated via PCHIP.</p>
 </div>
 
 <!-- Domain detail panels -->
@@ -1020,7 +1020,7 @@
   <div class="value-card">
     <div class="value-card-label">Per sow-crate-day</div>
     <div class="value-card-number" id="val-scd">EUR 7.80</div>
-    <div class="value-card-sub">welfare benefit per day of freedom</div>
+    <div class="value-card-sub">welfare benefit per sow-crate-day avoided</div>
   </div>
   <div class="value-card">
     <div class="value-card-label">Per sow per lactation (28 days)</div>
@@ -1050,32 +1050,36 @@
 <h2>Table 7: Cost-Benefit Comparison</h2>
 <p>Welfare benefit alongside economic cost to the producer, across three valuation approaches.</p>
 
-<div class="ratio-cards-header">
-  <div>Valuation method</div>
-  <div style="text-align: right;">Per sow-crate-day</div>
-  <div style="text-align: right;">Per kg of pork</div>
-  <div style="text-align: center; min-width: 4.5rem;">Benefit-cost ratio</div>
-</div>
-<div class="ratio-cards" id="ratio-cards">
-  <div class="ratio-card" id="ratio-wtp">
-    <div class="ratio-card-method">Consumer WTP (Clark et al. 2017, EUR 0.54/kg pork)</div>
-    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val" id="rc-wtp-scd">14.09</span></div>
-    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val" id="rc-wtp-kg">0.54</span></div>
-    <div class="ratio-card-bcr" id="rc-wtp-bcr">64.0&times;</div>
-  </div>
-  <div class="ratio-card" id="ratio-neuron">
-    <div class="ratio-card-method">Direct approach based on Neuron count (1/44 welfare weight)</div>
-    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val" id="rc-neuron-scd"></span></div>
-    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val" id="rc-neuron-kg"></span></div>
-    <div class="ratio-card-bcr" id="rc-neuron-bcr"></div>
-  </div>
-  <div class="ratio-card" id="ratio-rp">
-    <div class="ratio-card-method">Direct approach based on Welfare Range (0.515)</div>
-    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val" id="rc-rp-scd"></span></div>
-    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val" id="rc-rp-kg"></span></div>
-    <div class="ratio-card-bcr" id="rc-rp-bcr"></div>
-  </div>
-</div>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 1rem 0;">
+  <thead>
+    <tr style="font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em;">
+      <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600;">Valuation method</th>
+      <th style="text-align: right; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600;">Per sow-crate-day</th>
+      <th style="text-align: right; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600;">Per kg of pork</th>
+      <th style="text-align: center; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--grid); font-weight: 600; min-width: 5rem;">Benefit-cost ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="ratio-wtp" style="border-bottom: 1px solid var(--grid);">
+      <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Consumer WTP (Clark et al. 2017, EUR 0.54/kg)</td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-wtp-scd">14.09</span></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-wtp-kg">0.54</span></td>
+      <td style="text-align: center; padding: 0.7rem 0.6rem; font-size: 1.2rem; font-weight: 800; color: var(--teal);" id="rc-wtp-bcr">64.0&times;</td>
+    </tr>
+    <tr id="ratio-neuron" style="border-bottom: 1px solid var(--grid);">
+      <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Direct: Neuron count (1/44)</td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-neuron-scd"></span></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-neuron-kg"></span></td>
+      <td style="text-align: center; padding: 0.7rem 0.6rem; font-size: 1.2rem; font-weight: 800; color: var(--teal);" id="rc-neuron-bcr"></td>
+    </tr>
+    <tr id="ratio-rp">
+      <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Direct: Welfare Range (0.515)</td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-scd"></span></td>
+      <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.06</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-kg"></span></td>
+      <td style="text-align: center; padding: 0.7rem 0.6rem; font-size: 1.2rem; font-weight: 800; color: var(--teal);" id="rc-rp-bcr"></td>
+    </tr>
+  </tbody>
+</table>
 <p style="font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.3rem;">All values in EUR. <span style="color: var(--crate-color);">Cost</span> = economic cost to producer. <span style="color: var(--teal); font-weight: 600;">Benefit</span> = monetised welfare gain.</p>
 
 <!-- Section 5: WTP Comparison -->
@@ -1104,7 +1108,7 @@
   <p>The Animal Quality-Adjusted Life Year (AQALY) framework was developed by <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5255360" target="_blank" style="color: var(--teal);">Espinosa, Browning, and Treich (2025)</a>. It adapts the human QALY concept for animal welfare valuation using a discrete choice experiment (DCE) with time trade-off (TTO) methodology.</p>
   <p>The 4PD-9L variant used here assesses four physical domains (Nutrition, Environment, Health, Behaviour) on a nine-grade scale. Coefficients were estimated from a merged sample of N=1,062 respondents.</p>
 
-  <p><strong>Subdomain layer.</strong> Domain grades in this assessment derive from 18 subdomains, built from Marie Reinke's Five Domains assessment of sow welfare in crate and free-farrowing (Swedish model, 6.5 m&sup2;) systems. Each subdomain is scored on the same 1&ndash;9 scale, and the domain grade is the arithmetic mean of its subdomains. This produces continuous (fractional) domain grades.</p>
+  <p><strong>Subdomain layer.</strong> Domain grades in this assessment derive from 18 subdomains, built from Marie's Five Domains assessment of sow welfare in crate and free-farrowing (Swedish model, 6.5 m&sup2;) systems. Each subdomain is scored on the same 1&ndash;9 scale, and the domain grade is the arithmetic mean of its subdomains. This produces continuous (fractional) domain grades.</p>
 
   <p><strong>Evidence tiers.</strong> Subdomain scores draw on three tiers of evidence:</p>
   <ul>
@@ -1125,9 +1129,8 @@
 </div>
 <div class="collapsible-content" id="method-weights">
   <p><strong>Consumer WTP (Clark et al. 2017, EUR 14.09/SCD):</strong> Meta-analytic consumer willingness-to-pay for pig welfare improvements. <a href="https://doi.org/10.1016/j.foodpol.2017.01.006" target="_blank" rel="noopener" style="color: var(--teal);">Clark et al. (2017)</a> synthesised 54 studies (335 WTP estimates, 17 countries). The pig-specific weighted mean is EUR 0.54/kg (13 studies, 90 measures, I&sup2; = 98.33%; GRADE: LOW). Converted: EUR 0.54/kg &times; 1,800 kg pork/sow/year &divide; 69 crate-days = EUR 14.09/SCD. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science.</p>
-  <p><strong>Neuron count (1/44 = 0.0227):</strong> The ratio of cortical neurons between pig (~2.2 billion) and human (~86 billion, of which cortical ~16 billion) brains. A conservative lower bound that treats raw neuron count as the sole determinant of moral weight.</p>
-  <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (0.515):</strong> The Rethink Priorities Welfare Range estimate, which aggregates across multiple theories of consciousness and moral status. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
-  <p>These three approaches span the plausible range. Consumer WTP and Neuron count are within the same order of magnitude; the Welfare Range estimate is an order of magnitude higher, reflecting ethical frameworks that assign pigs substantially more moral weight than neuron proportionality alone implies.</p>
+  <p><strong>Neuron count (1/44 = 0.0227):</strong> The ratio of cortical neurons between pig (~2.2 billion) and human (~86 billion, of which cortical ~16 billion) brains.</p>
+  <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (0.515):</strong> The Rethink Priorities Welfare Range estimate, which aggregates across multiple theories of consciousness and hedonic capacity. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
 </div>
 
 <div class="collapsible-header" onclick="toggleSection('method-econ')">
@@ -1146,10 +1149,8 @@
 <div class="collapsible-content" id="method-limits">
   <ul>
     <li>Domain grades are preliminary, pending validation by animal welfare scientists. Grade assignments involve judgment calls in translating Five Domains qualitative assessments to the AQALY numeric scale.</li>
-    <li>The AQALY framework captures physical domains only. Mental/affective states beyond those expressed through physical domains are not directly measured.</li>
     <li>Moral weight is the most consequential parameter. Moving from the Neuron count floor to the Welfare Range estimate multiplies all values by a factor of 22.7.</li>
     <li>The EUR 147,000 QALY threshold reflects EU-average health-economic valuation; national thresholds vary.</li>
-    <li>The comparison assumes 28 continuous crate-days per litter. Temporary-crating systems (confinement for a subset of days) would reduce the delta proportionally.</li>
     <li>Subdomain scores aggregate via arithmetic mean, which weights all subdomains equally within a domain. Alternative aggregation methods (e.g., severity-weighted) could shift the domain grades.</li>
     <li>Linear interpolation between integer-grade coefficients is an approximation. The underlying PCHIP curve is nonlinear; the error is small for grades near the integers but increases at midpoints of steep segments.</li>
   </ul>
@@ -1295,7 +1296,7 @@ function buildMonetisationData(delta) {
       kg: neuron_kg,
       bcr: neuron_bcr,
       bcrRound: Math.round(neuron_bcr),
-      description: 'Neuron count: cortical neuron ratio between pig and human brains. Conservative lower bound.'
+      description: 'Neuron count: cortical neuron ratio between pig and human brains.'
     },
     rp: {
       scd: rp_scd,
@@ -1304,7 +1305,7 @@ function buildMonetisationData(delta) {
       kg: rp_kg,
       bcr: rp_bcr,
       bcrRound: Math.round(rp_bcr),
-      description: 'Welfare Range (Rethink Priorities): aggregates across multiple theories of consciousness and moral status.'
+      description: '<a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (Rethink Priorities): aggregates across multiple theories of consciousness and hedonic capacity.'
     }
   };
 }
@@ -1538,27 +1539,28 @@ function buildDomainSVGs() {
       svg += '<text x="' + (DOT_X + 10) + '" y="' + (y + 3.5) + '" font-size="9" fill="#999">' + grade + '</text>';
     });
 
-    // Crate circle (interpolated position)
+    // Crate and Free circle positions
     var yCrate = yPos(crateCoeff);
-    svg += '<circle cx="' + DOT_X + '" cy="' + yCrate + '" r="9" fill="#c890a0" stroke="#fff" stroke-width="1.5"/>';
-    svg += '<text x="' + DOT_X + '" y="' + (yCrate + 3.5) + '" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">' + fmtGrade(crateGrade) + '</text>';
-    svg += '<line x1="' + (DOT_X + 12) + '" y1="' + yCrate + '" x2="' + (DOT_X + 30) + '" y2="' + yCrate + '" stroke="#c890a0" stroke-width="0.8"/>';
-    svg += '<text x="' + (DOT_X + 34) + '" y="' + (yCrate + 4) + '" font-size="10" font-weight="600" fill="#c890a0">Crate (' + crateCoeff.toFixed(3) + ')</text>';
-
-    // Free circle (interpolated position)
     var yFree = yPos(freeCoeff);
-
-    // Check overlap
     var overlap = Math.abs(yCrate - yFree) < 20;
-    if (overlap && Math.abs(crateGrade - freeGrade) < 0.01) {
-      // Same grade: split circle
-      svg += '<circle cx="' + DOT_X + '" cy="' + yFree + '" r="9" fill="url(#split-' + domain + ')" stroke="#fff" stroke-width="1.5"/>';
+    var sameGrade = overlap && Math.abs(crateGrade - freeGrade) < 0.01;
+
+    if (sameGrade) {
+      // Same grade: single split circle with both labels
+      svg += '<circle cx="' + DOT_X + '" cy="' + yCrate + '" r="9" fill="url(#split-' + domain + ')" stroke="#fff" stroke-width="1.5"/>';
       svg += '<defs><linearGradient id="split-' + domain + '" x1="0" y1="0" x2="1" y2="0">';
       svg += '<stop offset="50%" stop-color="#c890a0"/><stop offset="50%" stop-color="#88a8a8"/></linearGradient></defs>';
-      svg += '<line x1="' + (DOT_X + 12) + '" y1="' + yFree + '" x2="' + (DOT_X + 30) + '" y2="' + yFree + '" stroke="#6a7a72" stroke-width="0.8"/>';
-      svg += '<text x="' + (DOT_X + 34) + '" y="' + (yFree - 5) + '" font-size="10" font-weight="600" fill="#c890a0">Crate (' + crateCoeff.toFixed(3) + ')</text>';
-      svg += '<text x="' + (DOT_X + 34) + '" y="' + (yFree + 9) + '" font-size="10" font-weight="600" fill="#88a8a8">Free (' + freeCoeff.toFixed(3) + ')</text>';
+      svg += '<text x="' + DOT_X + '" y="' + (yCrate + 3.5) + '" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">' + fmtGrade(crateGrade) + '</text>';
+      svg += '<line x1="' + (DOT_X + 12) + '" y1="' + yCrate + '" x2="' + (DOT_X + 30) + '" y2="' + yCrate + '" stroke="#6a7a72" stroke-width="0.8"/>';
+      svg += '<text x="' + (DOT_X + 34) + '" y="' + (yCrate - 5) + '" font-size="10" font-weight="600" fill="#c890a0">Crate (' + crateCoeff.toFixed(3) + ')</text>';
+      svg += '<text x="' + (DOT_X + 34) + '" y="' + (yCrate + 9) + '" font-size="10" font-weight="600" fill="#88a8a8">Free (' + freeCoeff.toFixed(3) + ')</text>';
     } else {
+      // Crate circle
+      svg += '<circle cx="' + DOT_X + '" cy="' + yCrate + '" r="9" fill="#c890a0" stroke="#fff" stroke-width="1.5"/>';
+      svg += '<text x="' + DOT_X + '" y="' + (yCrate + 3.5) + '" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">' + fmtGrade(crateGrade) + '</text>';
+      svg += '<line x1="' + (DOT_X + 12) + '" y1="' + yCrate + '" x2="' + (DOT_X + 30) + '" y2="' + yCrate + '" stroke="#c890a0" stroke-width="0.8"/>';
+      svg += '<text x="' + (DOT_X + 34) + '" y="' + (yCrate + 4) + '" font-size="10" font-weight="600" fill="#c890a0">Crate (' + crateCoeff.toFixed(3) + ')</text>';
+      // Free circle
       svg += '<circle cx="' + DOT_X + '" cy="' + yFree + '" r="9" fill="#88a8a8" stroke="#fff" stroke-width="1.5"/>';
       svg += '<text x="' + DOT_X + '" y="' + (yFree + 3.5) + '" text-anchor="middle" font-size="8" font-weight="700" fill="#fff">' + fmtGrade(freeGrade) + '</text>';
       svg += '<line x1="' + (DOT_X + 12) + '" y1="' + yFree + '" x2="' + (DOT_X + 30) + '" y2="' + yFree + '" stroke="#88a8a8" stroke-width="0.8"/>';
