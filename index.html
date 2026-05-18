@@ -1007,13 +1007,13 @@
 <p>Welfare gains monetised via the human QALY threshold (EUR 147,000), scaled by a moral weight representing how much a pig-year matters relative to a human-year.</p>
 
 <div class="toggle-container">
-  <button class="toggle-btn active" onclick="setMoralWeight('levy')" id="btn-levy">Welfare levy (E&amp;T)</button>
+  <button class="toggle-btn active" onclick="setMoralWeight('wtp')" id="btn-wtp">Consumer WTP (Clark)</button>
   <button class="toggle-btn" onclick="setMoralWeight('neuron')" id="btn-neuron">Neuron count (1/44)</button>
   <button class="toggle-btn" onclick="setMoralWeight('rp')" id="btn-rp">Welfare Range (0.515)</button>
 </div>
 
 <p style="font-size: 0.82rem; color: var(--muted); text-align: center; margin-bottom: 1rem;">
-  <span id="mw-description">Welfare levy (Espinosa &amp; Treich 2024): optimal Pigouvian levy on pork = EUR 11.07/kg, derived from QALY-based welfare-damage monetisation (W<sub>0</sub>=10). Independent of the AQALY framework; uses the same EUR 147,000 QALY threshold.</span>
+  <span id="mw-description">Consumer WTP (Clark et al. 2017): meta-analytic consumer willingness-to-pay for pig welfare improvements = EUR 0.54/kg pork, from 13 studies and 90 WTP measures. Converted to per sow-crate-day via production ratio (1,800 kg pork/sow/year &divide; 69 crate-days/sow/year).</span>
 </p>
 
 <div class="value-grid">
@@ -1057,11 +1057,11 @@
   <div style="text-align: center; min-width: 4.5rem;">Benefit-cost ratio</div>
 </div>
 <div class="ratio-cards" id="ratio-cards">
-  <div class="ratio-card" id="ratio-levy">
-    <div class="ratio-card-method">Welfare levy (Espinosa &amp; Treich 2024, EUR 11.07/kg pork)</div>
-    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val" id="rc-levy-scd">40.59</span></div>
-    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val" id="rc-levy-kg">11.07</span></div>
-    <div class="ratio-card-bcr" id="rc-levy-bcr">184.5&times;</div>
+  <div class="ratio-card" id="ratio-wtp">
+    <div class="ratio-card-method">Consumer WTP (Clark et al. 2017, EUR 0.54/kg pork)</div>
+    <div class="ratio-card-values"><span class="cost-val">0.22</span> &rarr; <span class="benefit-val" id="rc-wtp-scd">14.09</span></div>
+    <div class="ratio-card-values"><span class="cost-val">0.06</span> &rarr; <span class="benefit-val" id="rc-wtp-kg">0.54</span></div>
+    <div class="ratio-card-bcr" id="rc-wtp-bcr">64.0&times;</div>
   </div>
   <div class="ratio-card" id="ratio-neuron">
     <div class="ratio-card-method">Direct approach based on Neuron count (1/44 welfare weight)</div>
@@ -1079,17 +1079,17 @@
 <p style="font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.3rem;">All values in EUR. <span style="color: var(--crate-color);">Cost</span> = economic cost to producer. <span style="color: var(--teal); font-weight: 600;">Benefit</span> = monetised welfare gain.</p>
 
 <!-- Section 5: WTP Comparison -->
-<h2>Willingness-to-Pay Comparison</h2>
+<h2>Comparison with Other Estimates</h2>
 <div class="card">
-  <p style="font-size: 0.88rem; margin-bottom: 0.8rem;">Consumer willingness-to-pay (WTP) for pig welfare improvements provides an independent cross-check on the AQALY-derived values. Two meta-analyses anchor the literature:</p>
+  <p style="font-size: 0.88rem; margin-bottom: 0.8rem;">The Clark et al. (2017) meta-analytic WTP of EUR 0.54/kg used in the first toggle can be cross-checked against other estimates and proposals:</p>
 
   <ul style="font-size: 0.85rem; margin-bottom: 0.8rem;">
-    <li><strong>Clark et al. (2017):</strong> 54 studies, 335 WTP estimates, 17 countries (56% EU). Found positive WTP across all species, with pigs receiving the lowest premium of any livestock species. Northern EU countries showed lower WTP, attributed to higher trust in existing regulation.</li>
+    <li><strong>Borchert Commission (2020):</strong> The German <em>Kompetenznetzwerk Nutztierhaltung</em> proposed a consumer surcharge of EUR 0.40/kg pork to fund animal welfare improvements (EUR 10.43/SCD, BCR 47.4&times;). Expert proposal, never enacted. <a href="https://www.bmel.de/SharedDocs/Downloads/DE/_Tiere/Tierschutz/zukunftskommission-landwirtschaft.html" target="_blank" rel="noopener" style="color: var(--teal);">BMEL source</a>.</li>
     <li><strong>Lagerkvist &amp; Hess (2011):</strong> 24 studies, 106 estimates. Found 50&ndash;150% stated premiums for welfare improvements, but noted substantial hypothetical bias inflating stated over revealed preferences.</li>
+    <li><strong>Eurobarometer 533 (2023):</strong> 60% of EU citizens willing to pay more for welfare-friendly products; 26% would pay up to 5% more. At a 5% retail premium on EUR 6/kg pork, this implies ~EUR 7.8/SCD.</li>
   </ul>
 
-
-  <p style="font-size: 0.88rem; margin-bottom: 0.6rem;" id="levy-convergence-text"></p>
+  <p style="font-size: 0.88rem; margin-bottom: 0.6rem;" id="wtp-context-text"></p>
 
 </div>
 
@@ -1124,10 +1124,10 @@
   Moral Weight Choices
 </div>
 <div class="collapsible-content" id="method-weights">
-  <p><strong>WTP / Eurobarometer (EUR 7.8/SCD):</strong> <a href="https://europa.eu/eurobarometer/surveys/detail/2996" target="_blank" rel="noopener" style="color: var(--teal);">Special Eurobarometer 533</a> (2023) found 60% of EU citizens willing to pay more for welfare-friendly products; 26% would pay up to 5% more. We assume a 5% retail price premium for improved sow welfare. Converted: 5% &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = ~EUR 7.8 per sow-crate-day. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science.</p>
+  <p><strong>Consumer WTP (Clark et al. 2017, EUR 14.09/SCD):</strong> Meta-analytic consumer willingness-to-pay for pig welfare improvements. <a href="https://doi.org/10.1016/j.foodpol.2017.01.006" target="_blank" rel="noopener" style="color: var(--teal);">Clark et al. (2017)</a> synthesised 54 studies (335 WTP estimates, 17 countries). The pig-specific weighted mean is EUR 0.54/kg (13 studies, 90 measures, I&sup2; = 98.33%; GRADE: LOW). Converted: EUR 0.54/kg &times; 1,800 kg pork/sow/year &divide; 69 crate-days = EUR 14.09/SCD. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science.</p>
   <p><strong>Neuron count (1/44 = 0.0227):</strong> The ratio of cortical neurons between pig (~2.2 billion) and human (~86 billion, of which cortical ~16 billion) brains. A conservative lower bound that treats raw neuron count as the sole determinant of moral weight.</p>
   <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (0.515):</strong> The Rethink Priorities Welfare Range estimate, which aggregates across multiple theories of consciousness and moral status. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
-  <p>These three approaches span the plausible range. WTP and Neuron count converge near the same order of magnitude; the Welfare Range estimate is an order of magnitude higher, reflecting ethical frameworks that assign pigs substantially more moral weight than neuron proportionality alone implies.</p>
+  <p>These three approaches span the plausible range. Consumer WTP and Neuron count are within the same order of magnitude; the Welfare Range estimate is an order of magnitude higher, reflecting ethical frameworks that assign pigs substantially more moral weight than neuron proportionality alone implies.</p>
 </div>
 
 <div class="collapsible-header" onclick="toggleSection('method-econ')">
@@ -1256,12 +1256,13 @@ var costs = { scd: 0.22, kg: 0.06 };
 // Monetisation: compute data object from delta
 // ============================================================
 function buildMonetisationData(delta) {
-  // Welfare levy (Espinosa & Treich 2024): EUR 11.07/kg pork (W0=10 baseline, Table 4)
-  var levy_kg = 11.07;
-  var levy_scd = levy_kg / (0.06 / 0.22);
-  var levy_lactation = levy_scd * 28;
-  var levy_year = levy_lactation * 2.3;
-  var levy_bcr = levy_scd / 0.22;
+  // Consumer WTP (Clark et al. 2017): EUR 0.54/kg pork (pig-specific, 13 studies, 90 measures)
+  // Uses production ratio (1800/69) not cost ratio (0.06/0.22) for kg-to-SCD conversion
+  var wtp_kg = 0.54;
+  var wtp_scd = wtp_kg * 1800 / 69;
+  var wtp_lactation = wtp_scd * 28;
+  var wtp_year = wtp_lactation * 2.3;
+  var wtp_bcr = wtp_scd / 0.22;
 
   // Neuron count: delta x (1/44) x 147000 / 365
   var neuron_scd = delta * (1/44) * 147000 / 365;
@@ -1278,14 +1279,14 @@ function buildMonetisationData(delta) {
   var rp_bcr = rp_scd / 0.22;
 
   return {
-    levy: {
-      scd: levy_scd,
-      lactation: levy_lactation,
-      year: levy_year,
-      kg: levy_kg,
-      bcr: levy_bcr,
-      bcrRound: Math.round(levy_bcr),
-      description: 'Welfare levy (Espinosa &amp; Treich 2024): optimal Pigouvian levy on pork = EUR 11.07/kg, derived from QALY-based welfare-damage monetisation (W<sub>0</sub>=10). Independent of the AQALY framework; uses the same EUR 147,000 QALY threshold.'
+    wtp: {
+      scd: wtp_scd,
+      lactation: wtp_lactation,
+      year: wtp_year,
+      kg: wtp_kg,
+      bcr: wtp_bcr,
+      bcrRound: Math.round(wtp_bcr),
+      description: 'Consumer WTP (Clark et al. 2017): meta-analytic consumer willingness-to-pay for pig welfare improvements = EUR 0.54/kg pork, from 13 studies and 90 WTP measures. Converted to per sow-crate-day via production ratio (1,800 kg pork/sow/year &divide; 69 crate-days/sow/year).'
     },
     neuron: {
       scd: neuron_scd,
@@ -1313,7 +1314,7 @@ function buildMonetisationData(delta) {
 // ============================================================
 var computed = computeAll();
 var data = buildMonetisationData(computed.delta);
-var currentWeight = 'levy';
+var currentWeight = 'wtp';
 
 // ============================================================
 // Format helpers
@@ -1343,7 +1344,7 @@ function fmtGrade(v) {
 function setMoralWeight(w) {
   currentWeight = w;
   document.getElementById('btn-neuron').classList.toggle('active', w === 'neuron');
-  document.getElementById('btn-levy').classList.toggle('active', w === 'levy');
+  document.getElementById('btn-wtp').classList.toggle('active', w === 'wtp');
   document.getElementById('btn-rp').classList.toggle('active', w === 'rp');
 
   var d = data[w];
@@ -1466,10 +1467,10 @@ function renderAQALY() {
 // Render: ratio cards (Cost-Benefit table)
 // ============================================================
 function renderRatioCards() {
-  // Welfare levy: constant (from E&T 2024)
-  document.getElementById('rc-levy-scd').textContent = data.levy.scd.toFixed(2);
-  document.getElementById('rc-levy-kg').textContent = data.levy.kg.toFixed(2);
-  document.getElementById('rc-levy-bcr').innerHTML = data.levy.bcr.toFixed(1) + '&times;';
+  // Consumer WTP: constant (Clark et al. 2017)
+  document.getElementById('rc-wtp-scd').textContent = data.wtp.scd.toFixed(2);
+  document.getElementById('rc-wtp-kg').textContent = data.wtp.kg.toFixed(2);
+  document.getElementById('rc-wtp-bcr').innerHTML = data.wtp.bcr.toFixed(1) + '&times;';
 
   // Neuron
   document.getElementById('rc-neuron-scd').textContent = data.neuron.scd.toFixed(2);
@@ -1491,11 +1492,11 @@ function renderCoreFinding() {
     data.neuron.scd.toFixed(2) + ' to EUR ' + data.rp.scd.toFixed(2) +
     ' per day (depending on moral weight), against an economic cost of EUR 0.22 per day to the farmer.';
 
-  document.getElementById('levy-convergence-text').textContent =
-    'The Espinosa & Treich (2024) optimal welfare levy of EUR ' + data.levy.scd.toFixed(2) +
-    ' per sow-crate-day falls within the AQALY-derived range, between the Neuron count estimate (EUR ' +
-    data.neuron.scd.toFixed(2) + ') and the Welfare Range estimate (EUR ' + data.rp.scd.toFixed(2) +
-    ').';
+  document.getElementById('wtp-context-text').textContent =
+    'The Clark et al. (2017) consumer WTP of EUR ' + data.wtp.scd.toFixed(2) +
+    ' per sow-crate-day is broadly consistent with the Neuron count estimate (EUR ' +
+    data.neuron.scd.toFixed(2) + ') and well below the Welfare Range estimate (EUR ' + data.rp.scd.toFixed(2) +
+    '). All three approaches yield benefit-cost ratios exceeding 1, confirming that the welfare gain substantially outweighs the economic cost.';
 }
 
 // ============================================================
@@ -1589,7 +1590,7 @@ function buildDomainSVGs() {
   buildDomainSVGs();
 
   // Set initial moral weight display
-  setMoralWeight('levy');
+  setMoralWeight('wtp');
 })();
 
 </script>
