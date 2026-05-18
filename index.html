@@ -1007,9 +1007,9 @@
 <p>Welfare gains monetised via the human QALY threshold (EUR 147,000), scaled by a moral weight representing how much a pig-year matters relative to a human-year.</p>
 
 <div class="toggle-container">
-  <button class="toggle-btn active" onclick="setMoralWeight('wtp')" id="btn-wtp">Consumer WTP (Clark)</button>
-  <button class="toggle-btn" onclick="setMoralWeight('neuron')" id="btn-neuron">Neuron count (1/44)</button>
-  <button class="toggle-btn" onclick="setMoralWeight('rp')" id="btn-rp">Welfare Range (0.515)</button>
+  <button class="toggle-btn active" onclick="setMoralWeight('wtp')" id="btn-wtp">Consumer WTP</button>
+  <button class="toggle-btn" onclick="setMoralWeight('neuron')" id="btn-neuron">Neuron count</button>
+  <button class="toggle-btn" onclick="setMoralWeight('rp')" id="btn-rp">Hedonic capacity</button>
 </div>
 
 <p style="font-size: 0.82rem; color: var(--muted); text-align: center; margin-bottom: 1rem;">
@@ -1073,7 +1073,7 @@
       <td style="text-align: right; padding: 0.7rem 0.6rem; font-weight: 700; color: var(--teal);" id="rc-neuron-bcr"></td>
     </tr>
     <tr id="ratio-rp">
-      <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Direct: Welfare Range (0.515)</td>
+      <td style="padding: 0.7rem 0.6rem; font-weight: 600;">Direct: Hedonic capacity (0.515)</td>
       <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.22</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-scd"></span></td>
       <td style="text-align: right; padding: 0.7rem 0.6rem;"><span style="color: var(--crate-color);">0.0071</span> &rarr; <span style="color: var(--teal); font-weight: 700;" id="rc-rp-kg"></span></td>
       <td style="text-align: right; padding: 0.7rem 0.6rem; font-weight: 700; color: var(--teal);" id="rc-rp-bcr"></td>
@@ -1130,7 +1130,7 @@
 <div class="collapsible-content" id="method-weights">
   <p><strong>Consumer WTP (Clark et al. 2017, EUR 16.73/SCD):</strong> Meta-analytic consumer willingness-to-pay for pig welfare improvements. <a href="https://doi.org/10.1016/j.foodpol.2017.01.006" target="_blank" rel="noopener" style="color: var(--teal);">Clark et al. (2017)</a> synthesised 54 studies (335 WTP estimates, 17 countries). The pig-specific weighted mean is EUR 0.54/kg (13 studies, 90 measures, I&sup2; = 98.33%; GRADE: LOW). BCR = EUR 0.54 &divide; EUR 0.0071 per-kg cost = 76.1&times;; applied to EUR 0.22/SCD cost gives EUR 16.73/SCD. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science.</p>
   <p><strong>Neuron count (1/44 = 0.0227):</strong> The ratio of cortical neurons between pig (~2.2 billion) and human (~86 billion, of which cortical ~16 billion) brains.</p>
-  <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (0.515):</strong> The Rethink Priorities Welfare Range estimate, which aggregates across multiple theories of consciousness and hedonic capacity. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
+  <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Hedonic capacity</a> (0.515):</strong> The Rethink Priorities welfare range estimate, which aggregates across multiple theories of consciousness and hedonic capacity. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
 </div>
 
 <div class="collapsible-header" onclick="toggleSection('method-econ')">
@@ -1149,7 +1149,7 @@
 <div class="collapsible-content" id="method-limits">
   <ul>
     <li>Domain grades are preliminary, pending validation by animal welfare scientists. Grade assignments involve judgment calls in translating Five Domains qualitative assessments to the AQALY numeric scale.</li>
-    <li>Moral weight is the most consequential parameter. Moving from the Neuron count floor to the Welfare Range estimate multiplies all values by a factor of 22.7.</li>
+    <li>Moral weight is the most consequential parameter. Moving from the Neuron count floor to the Hedonic capacity estimate multiplies all values by a factor of 22.7.</li>
     <li>The EUR 147,000 QALY threshold reflects EU-average health-economic valuation; national thresholds vary.</li>
     <li>Subdomain scores aggregate via arithmetic mean, which weights all subdomains equally within a domain. Alternative aggregation methods (e.g., severity-weighted) could shift the domain grades.</li>
     <li>Linear interpolation between integer-grade coefficients is an approximation. The underlying PCHIP curve is nonlinear; the error is small for grades near the integers but increases at midpoints of steep segments.</li>
@@ -1272,7 +1272,7 @@ function buildMonetisationData(delta) {
   var neuron_kg = neuron_scd * (costs.kg / costs.scd);
   var neuron_bcr = neuron_scd / costs.scd;
 
-  // Welfare Range: delta x 0.515 x 147000 / 365
+  // Hedonic capacity (Rethink Priorities welfare range): delta x 0.515 x 147000 / 365
   var rp_scd = delta * 0.515 * 147000 / 365;
   var rp_lactation = rp_scd * 28;
   var rp_year = rp_lactation * 2.3;
@@ -1296,7 +1296,7 @@ function buildMonetisationData(delta) {
       kg: neuron_kg,
       bcr: neuron_bcr,
       bcrRound: Math.round(neuron_bcr),
-      description: 'Neuron count: cortical neuron ratio between pig and human brains.'
+      description: 'Neuron count (weight = 1/44 &asymp; 0.023): cortical neuron ratio between pig (~2.2 billion) and human (~16 billion cortical) brains. A lower bound on moral weight, treating sentience as proportional to neural substrate.'
     },
     rp: {
       scd: rp_scd,
@@ -1305,7 +1305,7 @@ function buildMonetisationData(delta) {
       kg: rp_kg,
       bcr: rp_bcr,
       bcrRound: Math.round(rp_bcr),
-      description: '<a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (Rethink Priorities): aggregates across multiple theories of consciousness and hedonic capacity.'
+      description: 'Hedonic capacity (weight = 0.515, <a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Rethink Priorities</a>): welfare range estimate aggregating across multiple theories of consciousness. Substantially higher than neuron-proportional, reflecting ethical frameworks that assign pigs considerable moral weight.'
     }
   };
 }
@@ -1490,7 +1490,7 @@ function renderCoreFinding() {
   document.getElementById('wtp-context-text').textContent =
     'The Clark et al. (2017) consumer WTP of EUR ' + data.wtp.scd.toFixed(2) +
     ' per sow-crate-day is broadly consistent with the Neuron count estimate (EUR ' +
-    data.neuron.scd.toFixed(2) + ') and well below the Welfare Range estimate (EUR ' + data.rp.scd.toFixed(2) +
+    data.neuron.scd.toFixed(2) + ') and well below the Hedonic capacity estimate (EUR ' + data.rp.scd.toFixed(2) +
     '). All three approaches yield benefit-cost ratios exceeding 1, confirming that the welfare gain substantially outweighs the economic cost.';
 }
 
