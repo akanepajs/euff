@@ -627,7 +627,7 @@
 <!-- Subdomain scoring tables -->
 <h2>Subdomain Scoring</h2>
 <p>Marie's Impact Assessment scores (Table 1) use a Severity/Intensity/Duration scale (0&ndash;4 each) that produces composite grades A&ndash;E, plus Enhancement ratings (0 to +++). To translate these into the AQALY 1&ndash;9 welfare scale, each subdomain grade is computed as: grade = 5 + compromise level &minus; enhancement level, where compromise maps A=0, B=1, C=2, D=3, E=4 and enhancement maps 0=0, +=1, ++=2, +++=3. A grade of 1 (best) means no compromise and high enhancement; 9 (worst) means very severe compromise and no enhancement. Where no Impact Assessment score exists, Marie's Five Domains numeric scores (&minus;2 to +2) are converted as grade = 5 &minus; 2 &times; score, or qualitative descriptions are translated to the 1&ndash;9 scale by expert judgment.</p>
-<p class="source-link">Source: <a href="https://docs.google.com/spreadsheets/d/1oILL7vR5PaSPhlmRkj_E5AWt-h6JP5tASmqWVbygBxc/edit?gid=1126749833#gid=1126749833" target="_blank" rel="noopener">Domains_Sows_Piglets worksheet</a></p>
+<p class="source-link">Sources: <a href="https://docs.google.com/spreadsheets/d/1DPcNffJynIMzErB4iXreYDV_Rz-ICbjOGYy_hZSGvuw/edit?gid=190678006#gid=190678006" target="_blank" rel="noopener">Impact Assessment workbook</a>, <a href="https://docs.google.com/spreadsheets/d/1oILL7vR5PaSPhlmRkj_E5AWt-h6JP5tASmqWVbygBxc/edit?gid=1126749833#gid=1126749833" target="_blank" rel="noopener">Domains_Sows_Piglets workbook</a></p>
 
 <p style="font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 0.8rem;">Evidence tiers: <strong>Tier 1</strong> = directly scored in the Impact Assessment; <strong>Tier 2</strong> = scored by Marie outside the IA; <strong>Tier 3</strong> = inferred from system assumptions (description shown in italics).</p>
 
@@ -1495,7 +1495,7 @@ function renderCoreFinding() {
     'The Espinosa & Treich (2024) optimal welfare levy of EUR ' + data.levy.scd.toFixed(2) +
     ' per sow-crate-day falls within the AQALY-derived range, between the Neuron count estimate (EUR ' +
     data.neuron.scd.toFixed(2) + ') and the Welfare Range estimate (EUR ' + data.rp.scd.toFixed(2) +
-    '). This convergence between an independent Pigouvian tax framework and the bottom-up AQALY welfare-science approach strengthens confidence in the order of magnitude.';
+    ').';
 }
 
 // ============================================================
