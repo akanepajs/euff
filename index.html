@@ -801,7 +801,7 @@
 </div>
 
 <p style="font-size: 0.82rem; color: var(--muted); text-align: center; margin-bottom: 1rem;">
-  <span id="mw-description">WTP (Eurobarometer): ~5% retail price premium from EU consumer surveys. Market-revealed cross-check.</span>
+  <span id="mw-description">WTP (Eurobarometer): assumed 5% retail price premium, based on <a href="https://europa.eu/eurobarometer/surveys/detail/2996" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: underline;">Eurobarometer 533</a> (2023) finding that 60% of EU citizens are willing to pay more for welfare-friendly products.</span>
 </p>
 
 <div class="value-grid">
@@ -878,11 +878,11 @@
 
   <p style="font-size: 0.85rem; margin-bottom: 0.6rem;">Approximate conversion to the sow-crate-day unit used in this assessment:</p>
   <ul style="font-size: 0.85rem; margin-bottom: 0.8rem;">
-    <li><strong>Eurobarometer (2023) median:</strong> ~5% retail price premium &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = <strong>~EUR 7.8 per sow-crate-day</strong></li>
+    <li><strong>Eurobarometer-based (own assumption):</strong> &ldquo;Six in ten respondents (60%) are willing to pay more for products sourced from animal welfare-friendly farming systems&rdquo; (<a href="https://europa.eu/eurobarometer/surveys/detail/2996" target="_blank" rel="noopener" style="color: var(--teal);">Special Eurobarometer 533</a>, 2023). We assume a 5% retail price premium for improved sow welfare. 5% &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = <strong>~EUR 7.8 per sow-crate-day</strong></li>
     <li><strong>German Tierwohl levy (revealed preference):</strong> EUR 0.0625/kg &times; 1,800 kg &divide; 69 days = <strong>~EUR 1.6 per sow-crate-day</strong></li>
   </ul>
 
-  <p style="font-size: 0.88rem; margin-bottom: 0.6rem;">The Eurobarometer-derived estimate of ~EUR 7.8 per sow-crate-day converges with the AQALY Neuron count estimate of EUR 9.06 per sow-crate-day. This convergence between a top-down survey-based approach and a bottom-up welfare-science approach is notable, though the WTP estimates carry wide uncertainty bands and are not specific to farrowing crate removal.</p>
+  <p style="font-size: 0.88rem; margin-bottom: 0.6rem;">The assumed-WTP estimate of ~EUR 7.8 per sow-crate-day converges with the AQALY Neuron count estimate of EUR 9.06 per sow-crate-day. This convergence between a top-down stated-preference approach and a bottom-up welfare-science approach is notable, though the WTP assumption carries wide uncertainty and is not specific to farrowing crate removal.</p>
 
 </div>
 
@@ -905,7 +905,7 @@
   Moral Weight Choices
 </div>
 <div class="collapsible-content" id="method-weights">
-  <p><strong>WTP / Eurobarometer (EUR 7.8/SCD):</strong> Derived from Eurobarometer (2023) median willingness-to-pay of ~5% retail price premium. Converted: 5% &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = ~EUR 7.8 per sow-crate-day. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science. Its convergence with the Neuron count estimate (EUR 9.06) is notable.</p>
+  <p><strong>WTP / Eurobarometer (EUR 7.8/SCD):</strong> <a href="https://europa.eu/eurobarometer/surveys/detail/2996" target="_blank" rel="noopener" style="color: var(--teal);">Special Eurobarometer 533</a> (2023) found 60% of EU citizens willing to pay more for welfare-friendly products; 26% would pay up to 5% more. We assume a 5% retail price premium for improved sow welfare. Converted: 5% &times; EUR 6/kg &times; 1,800 kg retail pork per sow per year &divide; 69 crate-days = ~EUR 7.8 per sow-crate-day. Methodologically distinct from the AQALY framework: a top-down stated-preference approach rather than bottom-up welfare science. Its convergence with the Neuron count estimate (EUR 9.06) is notable.</p>
   <p><strong>Neuron count (1/44 = 0.0227):</strong> The ratio of cortical neurons between pig (~2.2 billion) and human (~86 billion, of which cortical ~16 billion) brains. A conservative lower bound that treats raw neuron count as the sole determinant of moral weight.</p>
   <p><strong><a href="https://rethinkpriorities.org/research-area/welfare-range-estimates/" target="_blank" rel="noopener" style="color: var(--teal);">Welfare Range</a> (0.515):</strong> The Rethink Priorities Welfare Range estimate, which aggregates across multiple theories of consciousness and moral status. Substantially higher, reflecting that many ethical frameworks assign pigs considerably more than neuron-proportional moral weight.</p>
   <p>These three approaches span the plausible range. WTP and Neuron count converge near EUR 8-9 per sow-crate-day; the Welfare Range estimate is an order of magnitude higher, reflecting ethical frameworks that assign pigs substantially more moral weight than neuron proportionality alone implies.</p>
@@ -963,7 +963,7 @@ const data = {
     kg: 2.13,
     bcr: 35.5,
     bcrRound: 35,
-    description: 'Willingness-to-pay: Eurobarometer (2023) median ~5% retail premium, converted to sow-crate-day basis.'
+    description: 'Willingness-to-pay: assumed 5% retail premium based on Eurobarometer 533 (2023), converted to sow-crate-day basis.'
   }
 };
 
